@@ -7,10 +7,10 @@ module Barchart
       end
     end
 
-    attr_reader :response_json
+    attr_reader :response_json, :struct
 
     def initialize(response)
-      @response_json = convert_hash_keys(JSON.parse(response))[:results]
+      @response_json = response
       @struct = RecursiveOpenStruct.new(@response_json, {recurse_over_arrays: true})
     end
 
@@ -19,21 +19,11 @@ module Barchart
     end
 
     def method_missing(name, *args)
-      @struct.send(name)
+      @struct[name.to_sym]
     end
 
-  private
-
-    def underscore_key(k)
-      k.to_s.underscore.to_sym
-    end
-
-    def convert_hash_keys(value)
-      case value
-      when Array then value.map { |v| convert_hash_keys(v) }
-      when Hash then Hash[value.map { |k, v| [underscore_key(k), convert_hash_keys(v)] }]
-      else value
-      end
+    def inspect
+      @struct.inspect.gsub(/#<RecursiveOpenStruct/,"#<#{self.class.name}")
     end
 
   end

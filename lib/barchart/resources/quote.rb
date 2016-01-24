@@ -5,8 +5,8 @@ module Barchart
     def self.get!(symbol, fields=[:bid,:ask], mode='R')
       fields_query = fields.join(',')
       response = Request.get("/getQuote.json?symbols=#{symbol}&fields=#{fields_query}")
-      p response
-      Quote.new(response)
+      #p response
+      Quote.new(response[:results].first)
     end
 
   end

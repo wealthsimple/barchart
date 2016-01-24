@@ -2,8 +2,6 @@ module Barchart
   class Request
     attr_reader :method, :path, :body
 
-    delegate :execute, to: :request
-
     def initialize(method:, path:, body: nil)
       Barchart.configuration.validate!
       @method = method
@@ -18,6 +16,20 @@ module Barchart
       end
     end
 
+    def execute
+      response = RestClient::Request.new({
+        url: url,
+        method: method,
+        headers: {
+          'Content-Type': 'application/json',
+          'Date': Time.now.utc.httpdate,
+        },
+        payload: body_to_json,
+      }).execute
+
+      convert_hash_keys(JSON.parse(response))
+    end
+
   private
 
     def url
@@ -30,17 +42,16 @@ module Barchart
       base_url
     end
 
-    def request
-      p url
-      RestClient::Request.new({
-        url: url,
-        method: method,
-        headers: {
-          'Content-Type': 'application/json',
-          'Date': Time.now.utc.httpdate,
-        },
-        payload: body_to_json,
-      })
+    def underscore_key(k)
+      k.to_s.underscore.to_sym
+    end
+
+    def convert_hash_keys(value)
+      case value
+      when Array then value.map { |v| convert_hash_keys(v) }
+      when Hash then Hash[value.map { |k, v| [underscore_key(k), convert_hash_keys(v)] }]
+      else value
+      end
     end
 
     def body_to_json
