@@ -9,7 +9,7 @@ require 'barchart/configuration'
 require 'barchart/request'
 require 'barchart/resources/resource'
 require 'barchart/resources/quote'
-#require 'barchart/resources/historical_quote'
+require 'barchart/resources/history'
 
 module Barchart
 end

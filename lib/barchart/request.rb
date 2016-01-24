@@ -17,6 +17,7 @@ module Barchart
     end
 
     def execute
+      p url
       response = RestClient::Request.new({
         url: url,
         method: method,
