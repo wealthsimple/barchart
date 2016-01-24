@@ -58,5 +58,5 @@ and you'll get the daily history, an array of `Barchart::History` objects
 This is useful if you just want to try out the package, you'll stil need to initialize Barchart with some valid configuration
 
 ```bash
-bundle exec ruby Console
+bundle exec ruby console
 ```
