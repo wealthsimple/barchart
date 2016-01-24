@@ -36,8 +36,9 @@ and you'll get an array of `Barchart::Quote`
  #<Barchart::Quote symbol="GOOG", name="Alphabet Inc Class C", day_code="L", server_timestamp=nil, mode="r", last_price=725.25, trade_timestamp="2016-01-22T00:00:00-06:00", net_change=18.66, percent_change=2.64, bid=0, ask=0, unit_code="2", open=723.6, high=728.13, low=720.12, close=725.25, num_trades=9735, dollar_volume=982119017.648, flag="s", volume=2011700, previous_volume=2412200>]
  ```
 
-## Barchart::Quote
+## Barchart::History
 
+Returns historical quotes for equities, indices, and forex.  Specifying `endDate` is optional, defaults to `nil`.
 
 ```ruby
 Barchart::History.get!('AAPL', 1.week.ago)
