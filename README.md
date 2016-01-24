@@ -36,22 +36,22 @@ and you'll get an array of `Barchart::Quote`
  #<Barchart::Quote symbol="GOOG", name="Alphabet Inc Class C", day_code="L", server_timestamp=nil, mode="r", last_price=725.25, trade_timestamp="2016-01-22T00:00:00-06:00", net_change=18.66, percent_change=2.64, bid=0, ask=0, unit_code="2", open=723.6, high=728.13, low=720.12, close=725.25, num_trades=9735, dollar_volume=982119017.648, flag="s", volume=2011700, previous_volume=2412200>]
  ```
 
- ## Barchart::History
+## Barchart::Quote
 
 
- ```ruby
- Barchart::History.get!('AAPL', 1.week.ago)
- ```
+```ruby
+Barchart::History.get!('AAPL', 1.week.ago)
+```
 
- and you'll get the daily history, an array of `Barchart::History` objects
+and you'll get the daily history, an array of `Barchart::History` objects
 
 
- ```ruby
- => [#<Barchart::History symbol="AAPL", timestamp="2016-01-19T00:00:00-05:00", trading_day="2016-01-19", open=98.41, high=98.65, low=95.5, close=96.66, volume=53087700, open_interest=nil>,
- #<Barchart::History symbol="AAPL", timestamp="2016-01-20T00:00:00-05:00", trading_day="2016-01-20", open=95.1, high=98.19, low=93.42, close=96.79, volume=72334400, open_interest=nil>,
- #<Barchart::History symbol="AAPL", timestamp="2016-01-21T00:00:00-05:00", trading_day="2016-01-21", open=97.06, high=97.88, low=94.94, close=96.3, volume=52161400, open_interest=nil>,
- #<Barchart::History symbol="AAPL", timestamp="2016-01-22T00:00:00-05:00", trading_day="2016-01-22", open=98.63, high=101.46, low=98.37, close=101.42, volume=65800400, open_interest=nil>]
- ```
+```ruby
+=> [#<Barchart::History symbol="AAPL", timestamp="2016-01-19T00:00:00-05:00", trading_day="2016-01-19", open=98.41, high=98.65, low=95.5, close=96.66, volume=53087700, open_interest=nil>,
+#<Barchart::History symbol="AAPL", timestamp="2016-01-20T00:00:00-05:00", trading_day="2016-01-20", open=95.1, high=98.19, low=93.42, close=96.79, volume=72334400, open_interest=nil>,
+#<Barchart::History symbol="AAPL", timestamp="2016-01-21T00:00:00-05:00", trading_day="2016-01-21", open=97.06, high=97.88, low=94.94, close=96.3, volume=52161400, open_interest=nil>,
+#<Barchart::History symbol="AAPL", timestamp="2016-01-22T00:00:00-05:00", trading_day="2016-01-22", open=98.63, high=101.46, low=98.37, close=101.42, volume=65800400, open_interest=nil>]
+```
 
 # Interactive Console
 
