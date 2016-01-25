@@ -1,6 +1,8 @@
 # barchart
 
-Client library for querying barchart.
+Ruby client library for querying some of [Barchart OnDemand's](http://www.barchartondemand.com/) APIs. 
+
+They have excellent documentation of their APIs [here](http://www.barchartondemand.com/api.php).  
 
 # Configuration
 
