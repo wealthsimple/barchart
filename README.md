@@ -1,8 +1,18 @@
 # barchart
 
-Ruby client library for querying some of [Barchart OnDemand's](http://www.barchartondemand.com/) APIs. 
+Ruby client library for querying some of [Barchart OnDemand's](http://www.barchartondemand.com/) APIs. They have excellent documentation of their APIs [here](http://www.barchartondemand.com/api.php).  Usage of their APIs requires a paid-subscription.
 
-They have excellent documentation of their APIs [here](http://www.barchartondemand.com/api.php).  
+# Installation
+
+```bash
+gem install barchart
+```
+
+or add to your Gemfile:
+
+```ruby
+gem 'barchart'
+```
 
 # Configuration
 
@@ -12,6 +22,7 @@ Barchart.configure do |config|
   config.api_base_url = 'http://ondemand.websol.barchart.com'
 end
 ```
+
 # Usage
 
 ## Barchart::Quote
@@ -63,3 +74,4 @@ This is useful if you just want to try out the package, you'll stil need to init
 ```bash
 bin/console
 ```
+
