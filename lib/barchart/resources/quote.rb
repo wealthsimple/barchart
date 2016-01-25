@@ -10,6 +10,7 @@ module Barchart
 
       response = Request.get("/getQuote.json?symbols=#{symbols_query}&fields=#{fields_query}")
 
+      return nil  if response[:results].nil?
       return Quote.new(response[:results].first)  if symbols.is_a?(String)
       response[:results].map { |result| Quote.new(result) }
     end
