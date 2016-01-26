@@ -18,7 +18,7 @@ module Barchart
       params = [symbol_query, type_query, start_date_query, end_date_query].compact.join('&')
       response = Request.get("/getHistory.json?#{params}")
 
-      response[:results].map { |result| History.new(result) }
+      response[:results].andand.map { |result| History.new(result) }
     end
   end
 end
