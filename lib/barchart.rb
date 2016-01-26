@@ -3,6 +3,7 @@ require 'rest-client'
 require 'active_support'
 require 'active_support/core_ext'
 require 'recursive-open-struct'
+require 'andand'
 
 require 'barchart/version'
 require 'barchart/configuration'
