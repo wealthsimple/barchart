@@ -1,21 +1,26 @@
 module Barchart
   class Resource
-    cattr_reader :datetime_fields, :date_fields
-    @@datetime_fields = []
-    @@date_fields = []
-
     def self.initialize_from_array_response(resource_class, response)
       JSON.parse(response.body).map do |resource_json|
         resource_class.new(resource_json)
       end
     end
 
+    # Define class-level instance variables for field types
+    def self.datetime_fields
+      @datetime_fields ||= []
+    end
+
+    def self.date_fields
+      @date_fields ||= []
+    end
+
     def self.set_datetime_fields(*fields)
-      @@datetime_fields.concat(fields.map(&:to_sym))
+      datetime_fields.concat(fields.map(&:to_sym))
     end
 
     def self.set_date_fields(*fields)
-      @@date_fields.concat(fields.map(&:to_sym))
+      date_fields.concat(fields.map(&:to_sym))
     end
 
     attr_reader :response_json, :struct
