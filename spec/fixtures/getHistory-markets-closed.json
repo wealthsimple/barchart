@@ -1,0 +1,19 @@
+{
+  "status": {
+    "code": 200,
+    "message": "Success."
+  },
+  "results": [
+    {
+      "symbol": "GOOGL",
+      "timestamp": false,
+      "tradingDay": false,
+      "open": null,
+      "high": null,
+      "low": null,
+      "close": null,
+      "volume": null,
+      "openInterest": null
+    }
+  ]
+}

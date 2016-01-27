@@ -1,0 +1,54 @@
+{
+  "status": {
+    "code": 200,
+    "message": "Success."
+  },
+  "results": [
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc",
+      "dayCode": "P",
+      "serverTimestamp": "2016-01-26T21:22:18-06:00",
+      "mode": "r",
+      "lastPrice": 733.79,
+      "tradeTimestamp": "2016-01-26T20:10:00-06:00",
+      "netChange": 0.17,
+      "percentChange": 0.02,
+      "bid": 0,
+      "ask": 0,
+      "unitCode": "2",
+      "open": 735.21,
+      "high": 739.46,
+      "low": 726.97,
+      "close": 733.79,
+      "numTrades": 7208,
+      "dollarVolume": 724709517,
+      "flag": "s",
+      "volume": 1547049,
+      "previousVolume": 2267000
+    },
+    {
+      "symbol": "CBO.TO",
+      "name": "Ishares 1-5Yr Laddered C",
+      "dayCode": "P",
+      "serverTimestamp": "2016-01-26T21:21:48-06:00",
+      "mode": "r",
+      "lastPrice": 19.09,
+      "tradeTimestamp": "2016-01-26T15:59:54-06:00",
+      "netChange": 0,
+      "percentChange": 0,
+      "bid": 19.09,
+      "ask": 19.13,
+      "unitCode": "2",
+      "open": 19.14,
+      "high": 19.14,
+      "low": 19.09,
+      "close": 19.09,
+      "numTrades": 239,
+      "dollarVolume": 1209125,
+      "flag": "s",
+      "volume": 63284,
+      "previousVolume": 81155
+    }
+  ]
+}
