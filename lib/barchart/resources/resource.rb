@@ -1,7 +1,8 @@
 module Barchart
   class Resource
-    cattr_reader :datetime_fields
+    cattr_reader :datetime_fields, :date_fields
     @@datetime_fields = []
+    @@date_fields = []
 
     def self.initialize_from_array_response(resource_class, response)
       JSON.parse(response.body).map do |resource_json|
@@ -11,6 +12,10 @@ module Barchart
 
     def self.set_datetime_fields(*fields)
       @@datetime_fields.concat(fields.map(&:to_sym))
+    end
+
+    def self.set_date_fields(*fields)
+      @@date_fields.concat(fields.map(&:to_sym))
     end
 
     attr_reader :response_json, :struct
@@ -30,6 +35,8 @@ module Barchart
       value = @struct[name]
       if self.class.datetime_fields.include?(name) && value.is_a?(String)
         value = DateTime.parse(value) rescue nil
+      elsif self.class.date_fields.include?(name) && value.is_a?(String)
+        value = Date.parse(value) rescue nil
       end
       value
     end

@@ -17,7 +17,7 @@ describe Barchart::History do
 
         its(:symbol) { is_expected.to eq("GOOGL") }
         its(:close) { is_expected.to eq(733.62) }
-        its(:trading_day) { is_expected.to eq(date.to_s) }
+        its(:trading_day) { is_expected.to eq(date) }
       end
     end
 
@@ -60,7 +60,7 @@ describe Barchart::History do
 
         its(:symbol) { is_expected.to eq("GOOGL") }
         its(:close) { is_expected.to eq(726.67) }
-        its(:trading_day) { is_expected.to eq("2016-01-21") }
+        its(:trading_day) { is_expected.to eq(Date.new(2016, 1, 21)) }
       end
 
       describe "history[0]" do
@@ -68,7 +68,7 @@ describe Barchart::History do
 
         its(:symbol) { is_expected.to eq("GOOGL") }
         its(:close) { is_expected.to eq(745.46) }
-        its(:trading_day) { is_expected.to eq("2016-01-22") }
+        its(:trading_day) { is_expected.to eq(Date.new(2016, 1, 22)) }
       end
 
       describe "history[0]" do
@@ -76,8 +76,15 @@ describe Barchart::History do
 
         its(:symbol) { is_expected.to eq("GOOGL") }
         its(:close) { is_expected.to eq(733.62) }
-        its(:trading_day) { is_expected.to eq("2016-01-25") }
+        its(:trading_day) { is_expected.to eq(Date.new(2016, 1, 25)) }
       end
     end
+  end
+
+  describe "datetime & date fields" do
+    subject { FactoryGirl.build(:barchart_history) }
+
+    its(:timestamp) { is_expected.to be_a(DateTime) }
+    its(:trading_day) { is_expected.to be_a(Date) }
   end
 end

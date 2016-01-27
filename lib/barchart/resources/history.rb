@@ -7,6 +7,9 @@ module Barchart
 
 
   class History < Resource
+    set_datetime_fields :timestamp
+    set_date_fields :trading_day
+
     # see the API documentation for values for type
     def self.get!(symbol, start_date=Date.today, end_date=nil, type='daily')
 
