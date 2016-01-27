@@ -1,4 +1,4 @@
-# barchart
+# barchart [![Circle CI](https://circleci.com/gh/wealthsimple/barchart.svg?style=svg)](https://circleci.com/gh/wealthsimple/barchart)
 
 Ruby client library for querying some of [Barchart OnDemand's](http://www.barchartondemand.com/) APIs. They have excellent documentation of their APIs [here](http://www.barchartondemand.com/api.php).  Usage of their APIs requires a paid-subscription.
 
@@ -74,4 +74,3 @@ This is useful if you just want to try out the package, you'll stil need to init
 ```bash
 bin/console
 ```
-
