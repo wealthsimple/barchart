@@ -10,6 +10,7 @@ Barchart.configure do |config|
   config.api_base_url = "http://api_base_url"
   config.api_key = "secret"
 end
+Barchart.logger = Logger.new(nil)
 
 RSpec.configure do |config|
   if ENV['CI']
