@@ -82,6 +82,7 @@ The barchart gem provides reusable [factory_girl](https://github.com/thoughtbot/
 To include these in your own project, add the following to `spec/spec_helper.rb`:
 
 ```ruby
+require 'factory_girl'
 barchart_dir = Gem::Specification.find_by_name("barchart").gem_dir
 Dir.glob([
   File.join(barchart_dir, "spec/support/*.rb"),
@@ -90,5 +91,6 @@ Dir.glob([
 
 RSpec.configure do |config|
   include Barchart::SpecHelpers
+  # Other configuration goes here
 end
 ```
