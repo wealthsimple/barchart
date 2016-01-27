@@ -3,12 +3,12 @@ FactoryGirl.define do
     skip_create
 
     initialize_with do
-      new(json_fixture("getQuote-single.json")[:results].first)
+      new(barchart_json_fixture("getQuote-single.json")[:results].first)
     end
 
     trait :invalid do
       initialize_with do
-        new(json_fixture("getQuote-invalid.json")[:results].first)
+        new(barchart_json_fixture("getQuote-invalid.json")[:results].first)
       end
     end
   end

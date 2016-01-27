@@ -3,12 +3,12 @@ FactoryGirl.define do
     skip_create
 
     initialize_with do
-      new(json_fixture("getHistory-markets-open.json")[:results].first)
+      new(barchart_json_fixture("getHistory-markets-open.json")[:results].first)
     end
 
     trait :markets_closed do
       initialize_with do
-        new(json_fixture("getHistory-markets-closed.json")[:results].first)
+        new(barchart_json_fixture("getHistory-markets-closed.json")[:results].first)
       end
     end
   end

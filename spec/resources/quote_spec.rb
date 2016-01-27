@@ -3,7 +3,7 @@ describe Barchart::Quote do
     context "with one symbol" do
       before(:each) do
         stub_request(:get, "http://api_base_url/getQuote.json?apikey=secret&fields=bid,ask&symbols=GOOGL")
-          .to_return(status: 200, body: fixture("getQuote-single.json"))
+          .to_return(status: 200, body: barchart_fixture("getQuote-single.json"))
       end
 
       subject(:quote) { described_class.get!("GOOGL") }
@@ -17,7 +17,7 @@ describe Barchart::Quote do
     context "with an array of symbols" do
       before(:each) do
         stub_request(:get, "http://api_base_url/getQuote.json?apikey=secret&fields=bid,ask&symbols=GOOGL,CBO.TO")
-          .to_return(status: 200, body: fixture("getQuote-multiple.json"))
+          .to_return(status: 200, body: barchart_fixture("getQuote-multiple.json"))
       end
 
       subject(:quotes) { described_class.get!(["GOOGL", "CBO.TO"]) }
@@ -47,7 +47,7 @@ describe Barchart::Quote do
     context "with an invalid symbol" do
       before(:each) do
         stub_request(:get, "http://api_base_url/getQuote.json?apikey=secret&fields=bid,ask&symbols=INVALID")
-          .to_return(status: 204, body: fixture("getQuote-invalid.json"))
+          .to_return(status: 204, body: barchart_fixture("getQuote-invalid.json"))
       end
 
       subject(:quote) { described_class.get!("INVALID") }

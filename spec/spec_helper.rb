@@ -5,6 +5,7 @@ require 'rspec/its'
 require 'rspec/collection_matchers'
 require 'factory_girl'
 Dir[File.join(File.dirname(__FILE__), 'shared_examples', '*.rb')].each { |f| require f }
+Dir[File.join(File.dirname(__FILE__), 'support', '*.rb')].each { |f| require f }
 
 # Test configuration
 Barchart.configure do |config|
@@ -13,6 +14,8 @@ Barchart.configure do |config|
 end
 
 RSpec.configure do |config|
+  include Barchart::SpecHelpers
+
   if ENV['CI']
     config.before(:example, :focus) { raise "Should not commit focused specs" }
   else
@@ -31,19 +34,5 @@ RSpec.configure do |config|
 
   config.mock_with :rspec do |mocks|
     mocks.verify_partial_doubles = true
-  end
-end
-
-def fixture(filename)
-  File.read("./spec/fixtures/#{filename}")
-end
-
-def json_fixture(filename)
-  string = fixture(filename)
-  hash = JSON.parse(string)
-  if hash.is_a?(Array)
-    hash.map(&:with_indifferent_access)
-  else
-    hash.with_indifferent_access
   end
 end
