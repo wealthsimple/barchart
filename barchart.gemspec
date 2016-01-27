@@ -26,6 +26,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "rspec-its"
   gem.add_development_dependency "rspec-collection_matchers"
   gem.add_development_dependency "webmock"
-  gem.add_development_dependency "factory_girl"
   gem.add_development_dependency "pry"
 end

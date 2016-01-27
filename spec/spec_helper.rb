@@ -3,7 +3,7 @@ require 'barchart'
 require 'webmock/rspec'
 require 'rspec/its'
 require 'rspec/collection_matchers'
-require 'factory_girl'
+Dir[File.join(File.dirname(__FILE__), 'shared_examples', '*.rb')].each { |f| require f }
 
 # Test configuration
 Barchart.configure do |config|
@@ -18,12 +18,7 @@ RSpec.configure do |config|
     config.filter_run focus: true
   end
 
-  FactoryGirl.definition_file_paths = %w[./spec/factories]
-  FactoryGirl.find_definitions
-
   config.run_all_when_everything_filtered = true
-  config.include FactoryGirl::Syntax::Methods
-  Dir[File.join(File.dirname(__FILE__), 'shared_examples', '*.rb')].each { |f| require f }
 
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
