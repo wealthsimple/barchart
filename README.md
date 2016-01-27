@@ -23,6 +23,16 @@ Barchart.configure do |config|
 end
 ```
 
+You can optionally override the logger with:
+
+``ruby
+# Use the Rails logger:
+Barchart.logger = Rails.logger
+
+# If you don't want to output any logs (e.g. in tests):
+Barchart.logger = Logger.new(nil)
+```
+
 # Usage
 
 ## Barchart::Quote

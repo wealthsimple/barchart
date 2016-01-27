@@ -6,6 +6,7 @@ require 'recursive-open-struct'
 
 require 'barchart/version'
 require 'barchart/configuration'
+require 'barchart/logger'
 require 'barchart/request'
 require 'barchart/resources/resource'
 require 'barchart/resources/quote'
