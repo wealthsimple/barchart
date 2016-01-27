@@ -1,0 +1,19 @@
+{
+  "status": {
+    "code": 200,
+    "message": "Success."
+  },
+  "results": [
+    {
+      "symbol": "GOOGL",
+      "timestamp": "2016-01-25T00:00:00-05:00",
+      "tradingDay": "2016-01-25",
+      "open": 743.84,
+      "high": 752.46,
+      "low": 732.5,
+      "close": 733.62,
+      "volume": 2267000,
+      "openInterest": null
+    }
+  ]
+}
