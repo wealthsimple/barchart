@@ -22,6 +22,8 @@ GEM
     diff-lcs (1.2.5)
     domain_name (0.5.25)
       unf (>= 0.0.5, < 1.0.0)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
     hashdiff (0.2.3)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
@@ -76,6 +78,7 @@ PLATFORMS
 
 DEPENDENCIES
   barchart!
+  factory_girl
   pry
   rspec
   rspec-collection_matchers
