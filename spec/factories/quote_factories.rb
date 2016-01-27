@@ -1,14 +1,14 @@
 FactoryGirl.define do
-  factory :quote, class: Barchart::Quote do
+  factory :barchart_quote, class: Barchart::Quote do
     skip_create
 
     initialize_with do
-      new(JSON.parse(fixture("getQuote-single.json")))
+      new(json_fixture("getQuote-single.json")[:results].first)
     end
 
     trait :invalid do
       initialize_with do
-        new(JSON.parse(fixture("getQuote-invalid.json")))
+        new(json_fixture("getQuote-invalid.json")[:results].first)
       end
     end
   end

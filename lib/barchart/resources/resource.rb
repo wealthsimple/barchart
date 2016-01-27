@@ -11,7 +11,8 @@ module Barchart
 
     def initialize(response)
       @response_json = response
-      @struct = RecursiveOpenStruct.new(@response_json, {recurse_over_arrays: true})
+      normalized_json = convert_hash_keys(@response_json)
+      @struct = RecursiveOpenStruct.new(normalized_json, {recurse_over_arrays: true})
     end
 
     def as_json(options = {})
@@ -26,5 +27,18 @@ module Barchart
       @struct.inspect.gsub(/#<RecursiveOpenStruct/,"#<#{self.class.name}")
     end
 
+  private
+
+    def underscore_key(k)
+      k.to_s.underscore.to_sym
+    end
+
+    def convert_hash_keys(value)
+      case value
+      when Array then value.map { |v| convert_hash_keys(v) }
+      when Hash then Hash[value.map { |k, v| [underscore_key(k), convert_hash_keys(v)] }]
+      else value
+      end
+    end
   end
 end

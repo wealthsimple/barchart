@@ -37,3 +37,13 @@ end
 def fixture(filename)
   File.read("./spec/fixtures/#{filename}")
 end
+
+def json_fixture(filename)
+  string = fixture(filename)
+  hash = JSON.parse(string)
+  if hash.is_a?(Array)
+    hash.map(&:with_indifferent_access)
+  else
+    hash.with_indifferent_access
+  end
+end
