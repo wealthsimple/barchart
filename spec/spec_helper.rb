@@ -3,6 +3,7 @@ require 'barchart'
 require 'webmock/rspec'
 require 'rspec/its'
 require 'rspec/collection_matchers'
+require 'factory_girl'
 Dir[File.join(File.dirname(__FILE__), 'shared_examples', '*.rb')].each { |f| require f }
 
 # Test configuration
@@ -17,6 +18,10 @@ RSpec.configure do |config|
   else
     config.filter_run focus: true
   end
+
+  FactoryGirl.definition_file_paths = %w[./spec/factories]
+  FactoryGirl.find_definitions
+  config.include FactoryGirl::Syntax::Methods
 
   config.run_all_when_everything_filtered = true
 
