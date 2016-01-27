@@ -55,4 +55,11 @@ describe Barchart::Quote do
       it { is_expected.to be_nil }
     end
   end
+
+  describe "datetime fields" do
+    subject { FactoryGirl.build(:barchart_quote) }
+
+    its(:server_timestamp) { is_expected.to be_a(DateTime) }
+    its(:trade_timestamp) { is_expected.to be_a(DateTime) }
+  end
 end
