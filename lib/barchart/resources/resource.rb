@@ -38,12 +38,7 @@ module Barchart
     def method_missing(name, *args)
       name = name.to_sym
       value = @struct[name]
-      if self.class.datetime_fields.include?(name) && value.is_a?(String)
-        value = DateTime.parse(value) rescue nil
-      elsif self.class.date_fields.include?(name) && value.is_a?(String)
-        value = Date.parse(value) rescue nil
-      end
-      value
+      parse_value(name, value)
     end
 
     def inspect
@@ -51,6 +46,18 @@ module Barchart
     end
 
   private
+
+    def parse_value(name, value)
+      if self.class.datetime_fields.include?(name) && value.is_a?(String)
+        DateTime.parse(value)
+      elsif self.class.date_fields.include?(name) && value.is_a?(String)
+        Date.parse(value)
+      else
+        value
+      end
+    rescue
+      value
+    end
 
     def underscore_key(k)
       k.to_s.underscore.to_sym
