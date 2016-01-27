@@ -1,4 +1,0 @@
-#!/usr/bin/env ruby
-require 'pry'
-require './lib/barchart'
-pry
