@@ -43,5 +43,16 @@ describe Barchart::Quote do
         its(:last_price) { is_expected.to eq(19.09) }
       end
     end
+
+    context "with an invalid symbol" do
+      before(:each) do
+        stub_request(:get, "http://api_base_url/getQuote.json?apikey=secret&fields=bid,ask&symbols=INVALID")
+          .to_return(status: 204, body: fixture("getQuote-invalid.json"))
+      end
+
+      subject(:quote) { described_class.get!("INVALID") }
+
+      it { is_expected.to be_nil }
+    end
   end
 end
