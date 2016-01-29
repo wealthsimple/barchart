@@ -28,7 +28,12 @@ module Barchart
         payload: body_to_json,
       }).execute
 
-      convert_hash_keys(JSON.parse(response))
+      json = JSON.parse(response)
+      if json.is_a?(Array)
+        json.map(&:with_indifferent_access)
+      else
+        json.with_indifferent_access
+      end
     end
 
   private
@@ -41,18 +46,6 @@ module Barchart
       base_url += path =~ /\?/ ? '&' : '?'
       base_url += "apikey=#{Barchart.configuration.api_key}"
       base_url
-    end
-
-    def underscore_key(k)
-      k.to_s.underscore.to_sym
-    end
-
-    def convert_hash_keys(value)
-      case value
-      when Array then value.map { |v| convert_hash_keys(v) }
-      when Hash then Hash[value.map { |k, v| [underscore_key(k), convert_hash_keys(v)] }]
-      else value
-      end
     end
 
     def body_to_json

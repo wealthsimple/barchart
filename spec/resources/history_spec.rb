@@ -3,7 +3,7 @@ describe Barchart::History do
     context "for a single day (markets are open)" do
       before(:each) do
         stub_request(:get, "http://api_base_url/getHistory.json?apikey=secret&endDate=20160125&startDate=20160125&symbol=GOOGL&type=daily")
-          .to_return(status: 200, body: fixture("getHistory-markets-open.json"))
+          .to_return(status: 200, body: barchart_fixture("getHistory-markets-open.json"))
       end
 
       let(:date) { Date.new(2016, 1, 25) }
@@ -17,14 +17,14 @@ describe Barchart::History do
 
         its(:symbol) { is_expected.to eq("GOOGL") }
         its(:close) { is_expected.to eq(733.62) }
-        its(:trading_day) { is_expected.to eq(date.to_s) }
+        its(:trading_day) { is_expected.to eq(date) }
       end
     end
 
     context "for a single day (markets are closed, e.g. weekend)" do
       before(:each) do
         stub_request(:get, "http://api_base_url/getHistory.json?apikey=secret&endDate=20160123&startDate=20160123&symbol=GOOGL&type=daily")
-          .to_return(status: 200, body: fixture("getHistory-markets-closed.json"))
+          .to_return(status: 200, body: barchart_fixture("getHistory-markets-closed.json"))
       end
 
       let(:date) { Date.new(2016, 1, 23) }
@@ -45,7 +45,7 @@ describe Barchart::History do
     context "for a range of days" do
       before(:each) do
         stub_request(:get, "http://api_base_url/getHistory.json?apikey=secret&endDate=20160125&startDate=20160121&symbol=GOOGL&type=daily")
-          .to_return(status: 200, body: fixture("getHistory-range.json"))
+          .to_return(status: 200, body: barchart_fixture("getHistory-range.json"))
       end
 
       let(:start_date) { Date.new(2016, 1, 21) }
@@ -60,7 +60,7 @@ describe Barchart::History do
 
         its(:symbol) { is_expected.to eq("GOOGL") }
         its(:close) { is_expected.to eq(726.67) }
-        its(:trading_day) { is_expected.to eq("2016-01-21") }
+        its(:trading_day) { is_expected.to eq(Date.new(2016, 1, 21)) }
       end
 
       describe "history[0]" do
@@ -68,7 +68,7 @@ describe Barchart::History do
 
         its(:symbol) { is_expected.to eq("GOOGL") }
         its(:close) { is_expected.to eq(745.46) }
-        its(:trading_day) { is_expected.to eq("2016-01-22") }
+        its(:trading_day) { is_expected.to eq(Date.new(2016, 1, 22)) }
       end
 
       describe "history[0]" do
@@ -76,8 +76,15 @@ describe Barchart::History do
 
         its(:symbol) { is_expected.to eq("GOOGL") }
         its(:close) { is_expected.to eq(733.62) }
-        its(:trading_day) { is_expected.to eq("2016-01-25") }
+        its(:trading_day) { is_expected.to eq(Date.new(2016, 1, 25)) }
       end
     end
+  end
+
+  describe "datetime & date fields" do
+    subject { FactoryGirl.build(:barchart_history) }
+
+    its(:timestamp) { is_expected.to be_a(DateTime) }
+    its(:trading_day) { is_expected.to be_a(Date) }
   end
 end

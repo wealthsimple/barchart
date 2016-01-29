@@ -3,7 +3,9 @@ require 'barchart'
 require 'webmock/rspec'
 require 'rspec/its'
 require 'rspec/collection_matchers'
+require 'factory_girl'
 Dir[File.join(File.dirname(__FILE__), 'shared_examples', '*.rb')].each { |f| require f }
+Dir[File.join(File.dirname(__FILE__), 'support', '*.rb')].each { |f| require f }
 
 # Test configuration
 Barchart.configure do |config|
@@ -13,11 +15,17 @@ end
 Barchart.logger = Logger.new(nil)
 
 RSpec.configure do |config|
+  include Barchart::SpecHelpers
+
   if ENV['CI']
     config.before(:example, :focus) { raise "Should not commit focused specs" }
   else
     config.filter_run focus: true
   end
+
+  FactoryGirl.definition_file_paths = %w[./spec/factories]
+  FactoryGirl.find_definitions
+  config.include FactoryGirl::Syntax::Methods
 
   config.run_all_when_everything_filtered = true
 
@@ -28,8 +36,4 @@ RSpec.configure do |config|
   config.mock_with :rspec do |mocks|
     mocks.verify_partial_doubles = true
   end
-end
-
-def fixture(filename)
-  File.read("./spec/fixtures/#{filename}")
 end

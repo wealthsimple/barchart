@@ -1,6 +1,8 @@
 module Barchart
   # http://www.barchartondemand.com/api/getQuote
   class Quote < Resource
+    set_datetime_fields :server_timestamp, :trade_timestamp
+    
     # mode can be R (realtime), I (delayed), D (end-of-day)
     def self.get!(symbols, fields=[:bid,:ask], mode='R')
       fields_query = fields.join(',')
