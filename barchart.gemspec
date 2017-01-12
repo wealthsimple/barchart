@@ -28,4 +28,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "webmock"
   gem.add_development_dependency "pry"
   gem.add_development_dependency "factory_girl"
+  gem.add_development_dependency "bundler-audit"
 end
