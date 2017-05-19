@@ -25,7 +25,7 @@ end
 
 You can optionally override the logger with:
 
-``ruby
+```ruby
 # Use the Rails logger:
 Barchart.logger = Rails.logger
 
