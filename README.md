@@ -77,6 +77,33 @@ and you'll get the daily history, an array of `Barchart::History` objects
 #<Barchart::History symbol="AAPL", timestamp="2016-01-22T00:00:00-05:00", trading_day="2016-01-22", open=98.63, high=101.46, low=98.37, close=101.42, volume=65800400, open_interest=nil>]
 ```
 
+## Barchart::EquityOptionsIntraday
+
+Returns intraday options data such as strike, expiration date, volatility, etc.
+
+Required arguments:
+* underlying_symbols - Array or String
+
+Optional arguments:
+* options - Hash
+    * fields - Array
+    * type - String
+    * strike_price - Float
+    * expiration_month - String
+    * expiration_date - Date
+    * only_strikes - Boolean
+```ruby
+Barchart::EquityOptionsIntraday.get!('AAPL')
+```
+
+and you'll get the intraday equity options, an array of `Barchart::EquityOptionsIntraday` objects
+
+```ruby
+=> [#<Barchart::EquityOptionsIntraday underlying_symbol="AAPL", symbol="AAPL170519P00002500", exchange="NASDAQ", type="Put", strike=2.5, expiration_date="2017-05-19", expiration_type="monthly", date="2017-05-18", open=0, high=0.02, low=0.02, last=0.02, change=0.02, percent_change=0, volume="2">,
+ #<Barchart::EquityOptionsIntraday underlying_symbol="AAPL", symbol="AAPL170519P00005000", exchange="NASDAQ", type="Put", strike=5, expiration_date="2017-05-19", expiration_type="monthly", date="2017-05-18", open=0, high=0.02, low=0.02, last=0.02, change=0.02, percent_change=0, volume="1">,
+ #<Barchart::EquityOptionsIntraday underlying_symbol="AAPL", symbol="AAPL170519P00007500", exchange="NASDAQ", type="Put", strike=7.5, expiration_date="2017-05-19", expiration_type="monthly", date="2017-05-18", open=0, high=0, low=0, last=0, change=0, percent_change=nil, volume="0">]
+```
+
 # Interactive Console
 
 This is useful if you just want to try out the package, you'll stil need to initialize Barchart with some valid configuration
