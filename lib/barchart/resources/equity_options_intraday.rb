@@ -10,6 +10,9 @@ module Barchart
   # @option options [Boolean] :only_strikes
 
   class EquityOptionsIntraday < Resource
+    set_datetime_fields :date, :last_update_date
+    set_date_fields :expiration_date, :bid_date, :ask_date, :last_trade_date
+
     def self.get!(underlying_symbols, options = {})
       underlying_symbols_query = [
         "underlying_symbols", [underlying_symbols].flatten.join(',')
@@ -33,7 +36,7 @@ module Barchart
         expiration_month_query,
         expiration_date_query,
         only_strikes_query
-      ].compact.join('&')
+      ].compact.join('&').gsub(/\s+/, "")
 
       response = Request.get("/getEquityOptionsIntraday.json?#{params}")
 
