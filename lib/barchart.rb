@@ -11,6 +11,7 @@ require 'barchart/request'
 require 'barchart/resources/resource'
 require 'barchart/resources/quote'
 require 'barchart/resources/history'
+require 'barchart/resources/equity_options_intraday'
 
 module Barchart
 end
